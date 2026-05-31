@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import "./App.css"
+import LeftSidebar from "./components/LeftSidebar"
+import CenterTimeline from "./components/CenterTimeline"
+import RightSidebar from "./components/RightSidebar";
 
 function App() {
-  const [message, setMessage] = useState("Loading...");
+  /* const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000")
@@ -11,11 +15,13 @@ function App() {
         console.error(error);
         setMessage("Failed to connect");
       });
-  }, []);
+  }, []); */
 
   return (
-    <div>
-      <h1>{message}</h1>
+    <div className="root-layout">
+      <LeftSidebar/>
+      <CenterTimeline/>
+      <RightSidebar/>
     </div>
   );
 }
