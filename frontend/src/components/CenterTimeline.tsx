@@ -1,9 +1,14 @@
-import { buildTimeline } from "../utils/TimelineBuilder";
-import StopItem from "./StopItem"
-import TravelItem from "./TravelItem";
+import { buildTimeline } from "../utils/TimelineBuilder"
+import { DndContext, closestCenter } from "@dnd-kit/core"
+import type { DragEndEvent } from "@dnd-kit/core"
+import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable"
+import { useState } from "react"
+import type { Stop } from "../types/Stop"
+import SortableStopItem from "./SortableStopItem"
+import TravelItem from "./TravelItem"
 
 // Test Data
-const stops = [
+const testStops = [
   {
     id: 1,
     name: "Tokyo Tower",
@@ -42,38 +47,36 @@ const stops = [
   },
 ];
 
-const travels = [
-  {
-    id: "1-2",
-    fromId: 1,
-    toId: 2,
-    duration: 15,
-    mode: "drive",
-  },
-  {
-    id: "2-3",
-    fromId: 2,
-    toId: 3,
-    duration: 8,
-    mode: "walk",
-  },
-];
-
 export default function CenterTimeline() {
-    const timeline = buildTimeline(stops, travels)
+    const [stops, setStops] = useState<Stop[]>(testStops);
+    const timeline = buildTimeline(stops);
+    const stopIds = stops.map(stop => stop.id.toString());
+    function handleDragEnd(event: DragEndEvent) {
+        const { active, over } = event;
+        if (!over || active.id === over.id) return;
+        setStops(prevList => {
+            const oldIndex = prevList.findIndex(stop => stop.id.toString() === active.id);
+            const newIndex = prevList.findIndex(stop => stop.id.toString() === over.id);
+            return arrayMove(prevList, oldIndex, newIndex);
+        })
+    }
     return (
         <main className="center-timeline">
             <h1>Trip Name</h1>
-            {timeline.map((item) => {
-                if (item.type === "stop") {
+            <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
+                <SortableContext items={stopIds} strategy={verticalListSortingStrategy}>
+                {timeline.map((item) => {
+                    if (item.type === "stop") {
+                        return (
+                            <SortableStopItem key={item.data.id} stop={item.data}/>
+                        )
+                    }
                     return (
-                        <StopItem key={item.data.id} stop={item.data}/>
+                        <TravelItem key={item.data.id} travel={item.data}/>
                     )
-                }
-                return (
-                    <TravelItem key={item.data.id} travel={item.data}/>
-                )
-            })}
+                })}
+                </SortableContext>
+            </DndContext>
             <p>Trip summary here</p>
         </main>
     )

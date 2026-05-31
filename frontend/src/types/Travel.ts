@@ -1,7 +1,7 @@
 export interface Travel {
     id: string;
-    fromId: number;
-    toId: number;
+    originId: number;
+    destId: number;
     duration: number;
     mode: string;
 }
