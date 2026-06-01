@@ -1,5 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from sqlmodel import Session, select
+from db import init_db, get_session
+from models import Trip, TripRequest, Stop, StopRequest, StopReorder
 
 app = FastAPI()
 
@@ -13,8 +16,147 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.on_event("startup")
+def startup():
+    init_db()
+
 @app.get("/")
 def root():
-    return {
-        "message": "Hello from FastAPI"
-    }
+    return {"status": "ok"}
+
+@app.post("/trips")
+def create_trip(
+    trip_input: TripRequest,
+    session: Session = Depends(get_session)
+):
+    trip = Trip.from_orm(trip_input)
+    session.add(trip)
+    session.commit()
+    session.refresh(trip)
+    return trip
+
+@app.get("/trips")
+def get_trips(
+    session: Session = Depends(get_session)
+):
+    return session.exec(select(Trip)).all()
+
+@app.get("/trips/{trip_id}")
+def get_trip(
+    trip_id: int,
+    session: Session = Depends(get_session)
+):
+    trip = session.get(Trip, trip_id)
+    if not trip:
+            raise HTTPException(status_code=404, detail="Trip Not Found")
+    return trip
+
+@app.put("/trips/{trip_id}")
+def update_trip(
+    trip_id: int,
+    trip_input: TripRequest
+    session: Session = Depends(get_session)
+):
+    trip = session.get(Trip, trip_id)
+    if not trip:
+        raise HTTPException(status_code=404, detail="Trip Not Found")
+    for key, value in trip_input.dict().items():
+        setattr(trip, key, value)
+    session.add(trip)
+    session.commit()
+    session.refresh(trip)
+    return trip
+
+@app.delete("/trips/{trip_id}")
+def delete_trip(
+    trip_id: int,
+    session: Session = Depends(get_session)
+):
+    trip = session.get(Trip, trip_id)
+    if not trip:
+        raise HTTPException(status_code=404, detail="Trip Not Found")
+    stops = session.exec(select(Stop).where(Stop.trip_id == trip_id)).all()
+    for stop in stops:
+        session.delete(stop)
+    session.delete(trip)
+    session.commit()
+    return {"ok": True}
+
+@app.post("/trips/{trip_id}/stops")
+def create_stop(
+    trip_id: int,
+    stop_input: StopRequest,
+    session: Session = Depends(get_session)
+):
+    stops = session.exec(select(Stop).where(Stop.trip_id == trip_id)).all()
+    next_stop = max([stop.sort_order for stop in stops], default=0) + 1
+    stop = Stop(
+        **stop_input.dict(),
+        trip_id=trip_id,
+        sort_order=next_stop
+    )
+    session.add(stop)
+    session.commit()
+    session.refresh(stop)
+    return stop
+
+@app.get("/trips/{trip_id}/stops")
+def get_stops(
+    trip_id: int,
+    session: Session = Depends(get_session)
+):
+    return session.exec(select(Stop).where(Stop.trip_id == trip_id).order_by(Stop.sort_order)).all()
+
+@app.get("/stops/{stop_id}")
+def get_stop(
+    stop_id: int,
+    session: Session = Depends(get_session)
+):
+    stop = session.get(Stop, stop_id)
+    if not stop:
+        raise HTTPException(status_code=404, detail="Stop Not Found")
+    return stop
+
+@app.put("/stops/{stop_id}")
+def update_stop(
+    stop_id: int,
+    stop_input: StopRequest,
+    session: Session = Depends(get_session)
+):
+    stop = session.get(Stop, stop_id)
+    if not stop:
+        raise HTTPException(status_code=404, detail="Stop Not Found")
+    for key, value in stop_input.dict().items():
+        setattr(stop, key, value)
+    session.add(stop)
+    session.commit()
+    session.refresh(stop)
+    return stop
+
+@app.delete("/stops/{stop_id}")
+def delete_stop(
+    stop_id: int,
+    session: Session = Depends(get_session)
+):
+    stop = session.get(Stop, stop_id)
+    if not stop:
+        raise HTTPException(status_code=404, detail="Stop Not Found")
+    session.delete(stop)
+    session.commit()
+    return {"ok": True}
+
+@app.post("/trips/{trip_id}/stops/reorder")
+def reorder_stops(
+    trip_id: int,
+    order: StopReorder,
+    session: Session = Depends(get_session)
+):
+    stops = session.exec(select(Stop).where(Stop.trip_id == trip_id)).all()
+    stop_map = {stop.id: stop for stop in stops}
+    for index, stop_id in enumerate(order.ids):
+        stop = stop_map.get(stop_id)
+        if stop:
+            stop.sort_order = index
+    session.add_all(stops)
+    session.commit()
+    return {"ok": True}

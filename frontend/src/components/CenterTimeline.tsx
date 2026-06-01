@@ -1,3 +1,4 @@
+import "./CenterTimeline.css"
 import { buildTimeline } from "../utils/TimelineBuilder"
 import { DndContext, closestCenter } from "@dnd-kit/core"
 import type { DragEndEvent } from "@dnd-kit/core"
@@ -18,8 +19,9 @@ const testStops = [
     latitude: 0,
     longitude: 0,
     cost: 35,
-    arrival: "10:00",
-    departure: "12:00",
+    timeZone: "Asia/Tokyo",
+    arrivalTime: "10:00",
+    departureTime: "12:00",
   },
   {
     id: 2,
@@ -30,8 +32,9 @@ const testStops = [
     latitude: 0,
     longitude: 0,
     cost: 0,
-    arrival: "12:30",
-    departure: "13:30",
+    timeZone: "Asia/Tokyo",
+    arrivalTime: "12:30",
+    departureTime: "13:30",
   },
   {
     id: 3,
@@ -42,8 +45,9 @@ const testStops = [
     latitude: 0,
     longitude: 0,
     cost: 60,
-    arrival: "14:00",
-    departure: "15:00",
+    timeZone: "Asia/Tokyo",
+    arrivalTime: "14:00",
+    departureTime: "15:00",
   },
 ];
 
@@ -63,20 +67,34 @@ export default function CenterTimeline() {
     return (
         <main className="center-timeline">
             <h1>Trip Name</h1>
-            <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
-                <SortableContext items={stopIds} strategy={verticalListSortingStrategy}>
-                {timeline.map((item) => {
-                    if (item.type === "stop") {
+            <div className="timeline-container">
+                <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCenter}>
+                    <SortableContext items={stopIds} strategy={verticalListSortingStrategy}>
+                    {timeline.map((item) => {
+                        if (item.type === "stop") {
+                            return (
+                                <div className="stop-container">
+                                    <div className="stop-rail">
+                                        <div className="stop-line-top"></div>
+                                        <div className="stop-marker"></div>
+                                        <div className="stop-line-bottom"></div>
+                                    </div>
+                                    <SortableStopItem key={item.data.id} stop={item.data}/>
+                                </div>
+                            )
+                        }
                         return (
-                            <SortableStopItem key={item.data.id} stop={item.data}/>
+                            <div className="travel-container">
+                                <div className="travel-rail">
+                                    <div className="travel-line"></div>
+                                </div>
+                                <TravelItem key={item.data.id} travel={item.data}/>
+                            </div>
                         )
-                    }
-                    return (
-                        <TravelItem key={item.data.id} travel={item.data}/>
-                    )
-                })}
-                </SortableContext>
-            </DndContext>
+                    })}
+                    </SortableContext>
+                </DndContext>
+            </div>
             <p>Trip summary here</p>
         </main>
     )

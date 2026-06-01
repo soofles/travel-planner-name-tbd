@@ -1,0 +1,61 @@
+.center-timeline {
+    width: 100%;
+    justify-self: center;
+}
+
+.center-timeline h1 {
+    text-align: center;
+}
+
+.timeline-container {
+    justify-self: center;
+}
+
+.stop-container {
+    display: flex;
+    align-items: stretch;
+}
+
+.stop-rail, .travel-rail {
+    width: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stop-line-top {
+    width: 4px;
+    height: 21.5%;
+    background: var(--text-primary);
+}
+
+.stop-marker {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--text-primary);
+}
+
+.stop-line-bottom {
+    width: 4px;
+    height: 78.5%;
+    background: var(--text-primary);
+}
+
+.travel-container {
+    height: 60px;
+    display: flex;
+    align-items: stretch;
+}
+
+.travel-line {
+    width: 4px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--text-primary) 0px,
+        var(--text-primary) 6px,
+        transparent 6px,
+        transparent 12px
+    );
+}

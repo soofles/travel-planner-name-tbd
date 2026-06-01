@@ -14,16 +14,20 @@ export default function SortableStopItem({ stop }: StopProps) {
     setNodeRef,
     transform,
     transition,
+    isDragging,
   } = useSortable({ id: stop.id.toString() });
 
-  const style = {
+  const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
+    position: "relative",
+    zIndex: isDragging ? 999 : 1,
   };
 
   return (
     <div
       ref={setNodeRef}
+      className={`sortable-stop-item ${isDragging ? "drag" : ""}`}
       style={style}
       {...attributes}
       {...listeners}
