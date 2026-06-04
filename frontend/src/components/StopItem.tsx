@@ -11,7 +11,7 @@ export default function StopItem({ stop }: StopProps) {
             <h3>{stop.name}</h3>
             <p>{stop.address}</p>
             <div>${stop.cost}</div>
-            <div>{stop.arrival} - {stop.departure}</div>
+            <div>{stop.arrivalTime} - {stop.departureTime}</div>
         </div>
     )
 }
