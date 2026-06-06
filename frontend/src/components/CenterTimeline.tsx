@@ -11,12 +11,16 @@ import TravelItem from "./TravelItem"
 interface CenterTimelineProps {
     trip: Trip | null;
     stops: Stop[];
+    onSelectStop: (id: number) => void;
+    onCreateStop: () => void;
     onDragEnd: (e: DragEndEvent) => void;
 }
 
 export default function CenterTimeline({
     trip,
     stops,
+    onSelectStop,
+    onCreateStop,
     onDragEnd,
 }: CenterTimelineProps) {
     const timeline = buildTimeline(stops);
@@ -36,7 +40,7 @@ export default function CenterTimeline({
             <p>{trip.start_date} - {trip!.end_date}</p>
             <div className="timeline-container">
                 <DndContext onDragEnd={onDragEnd} collisionDetection={closestCenter}>
-                    <SortableContext items={stops} strategy={verticalListSortingStrategy}>
+                    <SortableContext items={stops.map(stop => stop.id)} strategy={verticalListSortingStrategy}>
                     {timeline.map((item) => {
                         if (item.type === "stop") {
                             return (
@@ -46,7 +50,7 @@ export default function CenterTimeline({
                                         <div className="stop-marker"></div>
                                         <div className="stop-line-bottom"></div>
                                     </div>
-                                    <SortableStopItem key={item.data.id} stop={item.data}/>
+                                    <SortableStopItem key={item.data.id} onClick={() => onSelectStop(item.data.id)} stop={item.data}/>
                                 </div>
                             )
                         }
@@ -61,6 +65,7 @@ export default function CenterTimeline({
                     })}
                     </SortableContext>
                 </DndContext>
+                <button onClick={onCreateStop}>+ New stop</button>
             </div>
             <p>Budget: {trip!.budget}</p>
         </main>

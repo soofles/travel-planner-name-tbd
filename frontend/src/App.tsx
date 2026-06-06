@@ -30,6 +30,8 @@ function App() {
   const [stops, setStops] = useState<Stop[]>([]);
   const [selectedStopId, setSelectedStopId] = useState<number | null>(null);
 
+  console.log(selectedStopId);
+
   const loadTrips = async () => {
     const res = await getTrips();
     setTrips(res);
@@ -77,6 +79,7 @@ function App() {
 
   const handleCreateStop = async () => {
     if (!selectedTripId) return;
+    const date = new Date().toISOString();
     const defaults: StopRequest = {
       name: "New stop",
       category: "",
@@ -86,8 +89,8 @@ function App() {
       longitude: 0,
       cost: 0,
       time_zone: "",
-      arrival_time: "",
-      departure_time: "",
+      arrival_time: date,
+      departure_time: date,
     }
     await createStop(selectedTripId, defaults);
     loadStops();
@@ -102,8 +105,8 @@ function App() {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
     setStops(prev => {
-      const oldIndex = prev.findIndex(stop => stop.id.toString() === active.id);
-      const newIndex = prev.findIndex(stop => stop.id.toString() === over.id);
+      const oldIndex = prev.findIndex(stop => stop.id === active.id);
+      const newIndex = prev.findIndex(stop => stop.id === over.id);
       const newStops = arrayMove(prev, oldIndex, newIndex);
       handleReorderStops(newStops.map((stop) => stop.id));
       return newStops
@@ -122,10 +125,13 @@ function App() {
       <CenterTimeline
         trip={trips.find(trip => trip.id === selectedTripId) ?? null}
         stops={stops}
+        // selectedStop={selectedStopId}
+        onSelectStop={setSelectedStopId}
+        onCreateStop={handleCreateStop}
         onDragEnd={handleDragEnd}
       />
       <RightSidebar
-        // stop={selectedStop}
+        // stop={selectedStopId}
       />
     </div>
   );

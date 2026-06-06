@@ -68,6 +68,6 @@ export async function reorderStops(id: number, input: number[]): Promise<OkRespo
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(input),
+        body: JSON.stringify({ ids: input }),
     });
 }

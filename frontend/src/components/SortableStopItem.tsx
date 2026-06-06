@@ -4,10 +4,11 @@ import type { Stop } from "../types/Stop";
 import StopItem from "./StopItem";
 
 interface StopProps {
+    onClick: () => void;
     stop: Stop;
 }
 
-export default function SortableStopItem({ stop }: StopProps) {
+export default function SortableStopItem(props: StopProps) {
   const {
     attributes,
     listeners,
@@ -15,7 +16,7 @@ export default function SortableStopItem({ stop }: StopProps) {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: stop.id.toString() });
+  } = useSortable({ id: props.stop.id });
 
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
@@ -31,8 +32,9 @@ export default function SortableStopItem({ stop }: StopProps) {
       style={style}
       {...attributes}
       {...listeners}
+      onClick={props.onClick}
     >
-      <StopItem stop={stop} />
+      <StopItem stop={props.stop} />
     </div>
   );
 }
