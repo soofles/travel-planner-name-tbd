@@ -25,7 +25,7 @@ export default function LeftSidebar({
         };
         window.addEventListener("click", handleClick);
         return () => {
-            window.removeEventListener("click", handleClick)
+            window.removeEventListener("click", handleClick);
         }
     })
 
@@ -60,7 +60,7 @@ export default function LeftSidebar({
                 >
                     <button onClick={async () => {
                         if(contextTrip === null) return;
-                        await onDeleteTrip(contextTrip);
+                        onDeleteTrip(contextTrip);
                         setContextTrip(null);
                     }}>
                         Delete Trip

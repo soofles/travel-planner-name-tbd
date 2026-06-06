@@ -1,10 +1,11 @@
 import "./CenterTimeline.css"
+import { useState, useEffect } from "react"
 import { buildTimeline } from "../utils/TimelineBuilder"
-import { DndContext, closestCenter } from "@dnd-kit/core"
 import type { DragEndEvent } from "@dnd-kit/core"
-import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import type { Trip } from "../types/Trip"
 import type { Stop } from "../types/Stop"
+import { DndContext, closestCenter, MouseSensor, useSensor, useSensors } from "@dnd-kit/core"
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import SortableStopItem from "./SortableStopItem"
 import TravelItem from "./TravelItem"
 
@@ -13,6 +14,7 @@ interface CenterTimelineProps {
     stops: Stop[];
     onSelectStop: (id: number) => void;
     onCreateStop: () => void;
+    onDeleteStop: (id: number) => void;
     onDragEnd: (e: DragEndEvent) => void;
 }
 
@@ -21,10 +23,9 @@ export default function CenterTimeline({
     stops,
     onSelectStop,
     onCreateStop,
+    onDeleteStop,
     onDragEnd,
 }: CenterTimelineProps) {
-    const timeline = buildTimeline(stops);
-
     if (!trip) {
         return (
             <main className="welcome-message">
@@ -33,13 +34,34 @@ export default function CenterTimeline({
         )
     }
 
+    const [contextStop, setContextStop] = useState<number | null>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        const handleClick = () => {
+            setContextStop(null);
+        }
+        window.addEventListener("click", handleClick);
+        return () => {
+            window.removeEventListener("click", handleClick);
+        }
+    })
+
+    const sensors = useSensors(
+        useSensor(MouseSensor, {
+            activationConstraint: { distance: 5 },
+        })
+    );
+
+    const timeline = buildTimeline(stops);
+
     return (
         <main className="center-timeline">
             <h1>{trip.name}</h1>
             <p>{trip.description}</p>
             <p>{trip.start_date} - {trip!.end_date}</p>
             <div className="timeline-container">
-                <DndContext onDragEnd={onDragEnd} collisionDetection={closestCenter}>
+                <DndContext onDragEnd={onDragEnd} collisionDetection={closestCenter} sensors={sensors}>
                     <SortableContext items={stops.map(stop => stop.id)} strategy={verticalListSortingStrategy}>
                     {timeline.map((item) => {
                         if (item.type === "stop") {
@@ -50,7 +72,15 @@ export default function CenterTimeline({
                                         <div className="stop-marker"></div>
                                         <div className="stop-line-bottom"></div>
                                     </div>
-                                    <SortableStopItem key={item.data.id} onClick={() => onSelectStop(item.data.id)} stop={item.data}/>
+                                    <SortableStopItem
+                                        key={item.data.id}
+                                        onClick={() => onSelectStop(item.data.id)}
+                                        onContextMenu={(e) => {
+                                            e.preventDefault();
+                                            setContextStop(item.data.id);
+                                            setPosition({ x: e.clientX, y: e.clientY })
+                                        }}
+                                        stop={item.data}/>
                                 </div>
                             )
                         }
@@ -68,6 +98,23 @@ export default function CenterTimeline({
                 <button onClick={onCreateStop}>+ New stop</button>
             </div>
             <p>Budget: {trip!.budget}</p>
+
+            {contextStop !== null && (
+                <div
+                    style={{
+                        top: position.y,
+                        left: position.x,
+                    }}
+                >
+                    <button onClick={async () => {
+                        if(contextStop === null) return;
+                        onDeleteStop(contextStop);
+                        setContextStop(null);
+                    }}>
+                        Delete Stop
+                    </button>
+                </div>
+            )}
         </main>
     )
 }

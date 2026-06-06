@@ -5,6 +5,7 @@ import StopItem from "./StopItem";
 
 interface StopProps {
     onClick: () => void;
+    onContextMenu: (e: any) => void;
     stop: Stop;
 }
 
@@ -33,6 +34,7 @@ export default function SortableStopItem(props: StopProps) {
       {...attributes}
       {...listeners}
       onClick={props.onClick}
+      onContextMenu={props.onContextMenu}
     >
       <StopItem stop={props.stop} />
     </div>

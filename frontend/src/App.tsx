@@ -30,8 +30,6 @@ function App() {
   const [stops, setStops] = useState<Stop[]>([]);
   const [selectedStopId, setSelectedStopId] = useState<number | null>(null);
 
-  console.log(selectedStopId);
-
   const loadTrips = async () => {
     const res = await getTrips();
     setTrips(res);
@@ -74,6 +72,7 @@ function App() {
   }
 
   useEffect(() => {
+    setSelectedStopId(null);
     loadStops();
   }, [selectedTripId]);
 
@@ -93,6 +92,16 @@ function App() {
       departure_time: date,
     }
     await createStop(selectedTripId, defaults);
+    loadStops();
+  }
+
+  const handleUpdateStop = async (id: number, input: StopRequest) => {
+    await updateStop(id, input);
+    loadStops();
+  }
+
+  const handleDeleteStop = async (id: number) => {
+    await deleteStop(id);
     loadStops();
   }
 
@@ -128,10 +137,13 @@ function App() {
         // selectedStop={selectedStopId}
         onSelectStop={setSelectedStopId}
         onCreateStop={handleCreateStop}
+        onDeleteStop={handleDeleteStop}
         onDragEnd={handleDragEnd}
       />
       <RightSidebar
-        // stop={selectedStopId}
+        stop={stops.find(stop => stop.id === selectedStopId) ?? null}
+        onUpdateStop={handleUpdateStop}
+        onDeleteStop={handleDeleteStop}
       />
     </div>
   );
