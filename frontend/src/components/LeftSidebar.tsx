@@ -1,9 +1,10 @@
+import "./LeftSidebar.css"
 import { useState, useEffect } from "react"
 import type { Trip } from "../types/Trip"
 
 interface LeftSidebarProps {
     trips: Trip[];
-    // selectedTrip: number | null;
+    selectedTripId: number | null;
     onSelectTrip: (id: number) => void;
     onCreateTrip: () => Promise<void>;
     onDeleteTrip: (id: number) => void;
@@ -11,7 +12,7 @@ interface LeftSidebarProps {
 
 export default function LeftSidebar({
     trips,
-    // selectedTrip,
+    selectedTripId,
     onSelectTrip,
     onCreateTrip,
     onDeleteTrip,
@@ -31,34 +32,60 @@ export default function LeftSidebar({
 
     return (
         <aside className="left-sidebar">
-            <h2>Trips</h2>
-            {trips.map((trip) => {
-                return (
-                    <div
-                        key={trip.id}
-                        onClick={() => onSelectTrip(trip.id)}
-                        onContextMenu={(e) => {
-                            e.preventDefault();
-                            setContextTrip(trip.id);
-                            setPosition({ x: e.clientX, y: e.clientY });
-                        }}
-                    >
-                        {trip.name}
-                    </div>
-                )
-            })}
-            <button onClick={onCreateTrip}>+ New trip</button>
-            <hr/>
-            <h3>Settings</h3>
+            <div className="title">
+                <span>✈</span>
+                <span>Travel</span>
+                <span>Planner</span>
+            </div>
+            <button className="action-button" onClick={onCreateTrip}>
+                <span className="plus">+</span>
+                <span>New trip</span>
+            </button>
+            <div className="trip-list">
+                {trips.map((trip) => {
+                    return (
+                        <div
+                            key={trip.id}
+                            className={`trip ${trip.id === selectedTripId ? "selected" : ""}`}
+                            onClick={() => onSelectTrip(trip.id)}
+                            onContextMenu={(e) => {
+                                e.preventDefault();
+                                setContextTrip(trip.id);
+                                setPosition({ x: e.clientX, y: e.clientY });
+                            }}
+                        >
+                            {/*<span></span>*/}
+                            <span>{trip.name}</span>
+                        </div>
+                    )
+                })}
+            </div>
+            <div className="settings-nav">
+                <span>⚙</span>
+                <span>Settings</span>
+            </div>
 
             {contextTrip !== null && (
                 <div
                     style={{
+                        position: "fixed",
                         top: position.y,
                         left: position.x,
+                        zIndex: 1000
                     }}
+                    className="context-menu"
                 >
-                    <button onClick={async () => {
+                    {/*<button onClick={async () => {
+
+                    }}>
+                        Change Icon
+                    </button>*/}
+                    <button className="context-menu-button" onClick={async () => {
+
+                    }}>
+                        Rename
+                    </button>
+                    <button className="context-menu-button" onClick={async () => {
                         if(contextTrip === null) return;
                         onDeleteTrip(contextTrip);
                         setContextTrip(null);

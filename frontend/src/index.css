@@ -1,12 +1,14 @@
 :root {
   --bg-primary: #191919;
   --bg-secondary: #202020;
-  --bg-tertiary: #252525;
+  --bg-tertiary: #2B2B2B;
+  --bg-quaternary: #353535;
 
   --border: #323232;
+  --shadow: rgba(0, 0, 0, 0.25);
 
   --text-primary: #ebebeb;
-  --text-secondary: #9f9f9f;
+  --text-secondary: #B2B2B2;
 
   --accent: #4f8cff;
 

@@ -5,8 +5,11 @@
 }
 
 .left-sidebar {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
   border-right: 1px solid var(--border);
-  padding: 1rem;
+  background: var(--bg-secondary);
 }
 
 .center-timeline {

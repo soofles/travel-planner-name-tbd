@@ -126,7 +126,7 @@ function App() {
     <div className="root-layout">
       <LeftSidebar
         trips={trips}
-        // selectedTrip={selectedTrip}
+        selectedTripId={selectedTripId}
         onSelectTrip={setSelectedTripId}
         onCreateTrip={handleCreateTrip}
         onDeleteTrip={handleDeleteTrip}
