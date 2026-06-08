@@ -57,9 +57,11 @@ export default function CenterTimeline({
 
     return (
         <main className="center-timeline">
-            <h1>{trip.name}</h1>
-            <p>{trip.description}</p>
-            <p>{trip.start_date} - {trip!.end_date}</p>
+            <div className="trip-summary">
+                <h1>{trip.name}</h1>
+                <p>{trip.description}</p>
+                <p>{trip.start_date} - {trip!.end_date}</p>
+            </div>
             <div className="timeline-container">
                 <DndContext onDragEnd={onDragEnd} collisionDetection={closestCenter} sensors={sensors}>
                     <SortableContext items={stops.map(stop => stop.id)} strategy={verticalListSortingStrategy}>
@@ -95,9 +97,21 @@ export default function CenterTimeline({
                     })}
                     </SortableContext>
                 </DndContext>
-                <button onClick={onCreateStop}>+ New stop</button>
+                <div className="stop-container">
+                    <div className="stop-rail">
+                        <div className="stop-line-top"></div>
+                        <div className="stop-marker"></div>
+                        <div className="stop-line-bottom"></div>
+                    </div>
+                    <button className="create-stop-button" onClick={onCreateStop}>
+                        <span className="plus">+</span>
+                        <span>Add stop</span>
+                    </button>
+                </div>
             </div>
-            <p>Budget: {trip!.budget}</p>
+            <div className="trip-summary">
+                <p>Budget: {trip!.budget}</p>
+            </div>
 
             {contextStop !== null && (
                 <div

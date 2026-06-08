@@ -123,7 +123,7 @@ function App() {
   }
 
   return (
-    <div className="root-layout">
+    <div className={`root-layout ${selectedStopId === null ? "right-closed" : ""}`}>
       <LeftSidebar
         trips={trips}
         selectedTripId={selectedTripId}

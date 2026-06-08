@@ -8,7 +8,7 @@
     color: var(--text-primary);
 }
 
-.action-button {
+.create-trip-button {
     margin-bottom: 24px; 
     padding: 8px 12px;
     width: 100%;
@@ -19,7 +19,6 @@
     font-family: Inter, system-ui, sans-serif;
     font-weight: 500;
     font-size: 1rem;
-    text-align: left;
     color: var(--text-secondary);
     background: transparent;
     cursor: pointer;

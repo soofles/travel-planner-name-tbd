@@ -34,10 +34,9 @@ export default function LeftSidebar({
         <aside className="left-sidebar">
             <div className="title">
                 <span>✈</span>
-                <span>Travel</span>
-                <span>Planner</span>
+                <span>Travel Planner</span>
             </div>
-            <button className="action-button" onClick={onCreateTrip}>
+            <button className="create-trip-button" onClick={onCreateTrip}>
                 <span className="plus">+</span>
                 <span>New trip</span>
             </button>

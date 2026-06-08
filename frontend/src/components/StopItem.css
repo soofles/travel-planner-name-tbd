@@ -1,16 +1,22 @@
 .stop-item {
     padding: 1rem;
     min-width: 480px;
+    min-height: 84px;
+    display: flex;
+    flex-direction: column;
     align-self: center;
     background: var(--bg-primary);
 }
 
 .stop-item h3 {
     margin: 0;
+    font-weight: 600;
+    font-size: 1.5rem;
 }
 
-.stop-item p {
+.stop-item span {
     margin: 0;
+    font-weight: 400;
 }
 
 .stop-item:hover {
