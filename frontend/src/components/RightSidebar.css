@@ -1,0 +1,57 @@
+.stop-details {
+    margin: 0;
+    margin-bottom: 24px;
+    padding: 8px 12px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.stop-name,
+.stop-category,
+.stop-desc,
+.stop-cost,
+.stop-address,
+.stop-time-zone,
+.stop-arrival,
+.stop-departure {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stop-category {
+
+}
+
+.stop-desc {
+
+}
+
+.stop-cost {
+    
+}
+
+.stop-address {
+
+}
+
+.stop-time-zone {
+
+}
+
+.stop-arrival {
+
+}
+
+.stop-departure {
+
+}
+
+.save-stop-button {
+
+}
+
+.delete-stop-button {
+
+}

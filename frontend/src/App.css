@@ -21,6 +21,9 @@
 }
 
 .right-sidebar {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
   border-left: 1px solid var(--border);
-  padding: 1rem;
+  background: var(--bg-secondary);
 }

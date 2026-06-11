@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import "./RightSidebar.css"
+import { useState, useEffect } from "react"
 import type { Stop } from "../types/Stop"
 import type { StopRequest } from "../api/stopAPI"
 
@@ -119,8 +120,8 @@ export default function RightSidebar({
                     onChange={(e) => handleChange("departure_time", e.target.value)}
                 />
             </div>
-            <button onClick={() => {onUpdateStop(stop.id, requestData)}}>Save</button>
-            <button onClick={() => {onDeleteStop(stop.id)}}>Delete Stop</button>
+            <button className="save-stop-button" onClick={() => {onUpdateStop(stop.id, requestData)}}>Save</button>
+            <button className="delete-stop-button" onClick={() => {onDeleteStop(stop.id)}}>Delete Stop</button>
         </aside>
     )
 }
