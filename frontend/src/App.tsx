@@ -142,6 +142,7 @@ function App() {
       />
       <RightSidebar
         stop={stops.find(stop => stop.id === selectedStopId) ?? null}
+        onCloseStop={setSelectedStopId}
         onUpdateStop={handleUpdateStop}
         onDeleteStop={handleDeleteStop}
       />

@@ -1,9 +1,36 @@
 .stop-details {
     margin: 0;
     margin-bottom: 24px;
-    padding: 8px 12px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stop-details h2 {
+    margin: 0;
     font-weight: 600;
     font-size: 20px;
+}
+
+.close-stop-button {
+    padding: 0 0 7px 0;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 6px;
+    font-weight: 300;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    background: none;
+}
+
+.close-stop-button:hover {
+    background: var(--bg-tertiary);
 }
 
 .stop-name,
@@ -17,41 +44,42 @@
     margin-bottom: 24px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 
-.stop-category {
-
+label {
+    padding-left: 2px;
+    font-weight: 500;
 }
 
-.stop-desc {
-
+.stop-name input,
+.stop-category select,
+.stop-desc textarea,
+.stop-cost input,
+.stop-address input,
+.stop-time-zone input,
+.stop-arrival input,
+.stop-departure input {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    resize: none;
 }
 
-.stop-cost {
-    
-}
-
-.stop-address {
-
-}
-
-.stop-time-zone {
-
-}
-
-.stop-arrival {
-
-}
-
-.stop-departure {
-
-}
-
-.save-stop-button {
-
-}
-
+.save-stop-button,
 .delete-stop-button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
 
+.save-stop-button:hover,
+.delete-stop-button:hover {
+    background: var(--bg-tertiary);
 }

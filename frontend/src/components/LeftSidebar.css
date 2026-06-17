@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 
-.action-button:hover {
+.create-trip-button:hover {
     background: var(--bg-tertiary);
 }
 

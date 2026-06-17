@@ -5,12 +5,14 @@ import type { StopRequest } from "../api/stopAPI"
 
 interface RightSidebarProps {
     stop: Stop | null;
+    onCloseStop: (id: number | null) => void;
     onUpdateStop: (id: number, input: StopRequest) => void;
     onDeleteStop: (id: number) => void;
 }
 
 export default function RightSidebar({
     stop,
+    onCloseStop,
     onUpdateStop,
     onDeleteStop,
 }: RightSidebarProps) {
@@ -58,9 +60,10 @@ export default function RightSidebar({
 
     return (
         <aside className="right-sidebar">
-            <h2 className="stop-details">
-                Stop Details
-            </h2>
+            <div className="stop-details">
+                <h2>Stop Details</h2>
+                <button className="close-stop-button" onClick={() => {onCloseStop(null)}}>&times;</button>
+            </div>
             <div className="stop-name">
                 <label>Name</label>
                 <input
@@ -71,7 +74,16 @@ export default function RightSidebar({
             </div>
             <div className="stop-category">
                 <label>Category</label>
-
+                <select
+                    value={requestData.category}
+                    onChange={(e) => handleChange("category", e.target.value)}
+                >
+                    <option value="" disabled>Select a category</option>
+                    <option value="Lodging">Lodging</option>
+                    <option value="Dining">Dining</option>
+                    <option value="Sightseeing">Sightseeing</option>
+                    <option value="Transit">Transit</option>
+                </select>
             </div>
             <div className="stop-desc">
                 <label>Description</label>

@@ -57,7 +57,7 @@ export default function CenterTimeline({
 
     return (
         <main className="center-timeline">
-            <div className="trip-summary">
+            <div className="trip-details">
                 <h1>{trip.name}</h1>
                 <p>{trip.description}</p>
                 <p>{trip.start_date} - {trip!.end_date}</p>

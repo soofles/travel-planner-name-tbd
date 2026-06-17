@@ -2,6 +2,7 @@
   height: 100vh;
   display: grid;
   grid-template-columns: 220px 1fr 280px;
+  overflow: hidden;
 }
 
 .root-layout.right-closed {
@@ -14,16 +15,28 @@
   flex-direction: column;
   border-right: 1px solid var(--border);
   background: var(--bg-secondary);
+  overflow-y: auto;
 }
 
 .center-timeline {
   padding: 0rem;
+  width: 100%;
+  overflow-y: auto;
 }
 
 .right-sidebar {
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
+  gap: 8px;
   border-left: 1px solid var(--border);
   background: var(--bg-secondary);
+  overflow-y: auto;
+}
+
+.left-sidebar,
+.center-timeline,
+.right-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-tertiary) transparent;
 }

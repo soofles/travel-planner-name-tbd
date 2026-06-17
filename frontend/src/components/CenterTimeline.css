@@ -11,26 +11,27 @@
 }
 
 .center-timeline {
-    margin: 0 auto;
-    max-width: 800px;
     display: flex;
     flex-direction: column;
-    justify-self: center;
+    align-items: center;
 }
 
-.trip-summary h1 {
+.trip-details h1 {
     margin: 128px 0 0 0;
+    width: 600px;
     font-weight: 600;
     font-size: 32pt;
 }
 
-.trip-summary p {
+.trip-details p {
     margin: 6px 0;
+    width: 600px;
     font-weight: 400;
 }
 
 .timeline-container {
     margin: 26px 0;
+    width: 600px;
     display: flex;
     flex-direction: column;
 }
@@ -104,4 +105,8 @@
 
 .create-stop-button:hover {
     background: var(--bg-secondary);
+}
+
+.trip-summary {
+    width: 600px;
 }
