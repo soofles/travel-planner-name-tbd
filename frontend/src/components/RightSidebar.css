@@ -27,6 +27,7 @@
     font-size: 2rem;
     color: var(--text-secondary);
     background: none;
+    cursor: pointer;
 }
 
 .close-stop-button:hover {
@@ -63,11 +64,24 @@ label {
     padding: 0.5rem;
     border: 1px solid var(--border);
     border-radius: 6px;
+    outline: 1px solid rgba(235, 235, 235, 0);
     font-family: Inter, system-ui, sans-serif;
     font-size: 1rem;
     color: var(--text-primary);
     background: var(--bg-primary);
     resize: none;
+    transition: outline 0.3s var(--transition-timing);
+}
+
+.stop-name input:focus-visible,
+.stop-category select:focus-visible,
+.stop-desc textarea:focus-visible,
+.stop-cost input:focus-visible,
+.stop-address input:focus-visible,
+.stop-time-zone input:focus-visible,
+.stop-arrival input:focus-visible,
+.stop-departure input:focus-visible {
+    outline: 1px solid var(--text-primary);
 }
 
 .save-stop-button,

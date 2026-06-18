@@ -18,20 +18,20 @@
 
 .trip-details h1 {
     margin: 128px 0 0 0;
-    width: 600px;
+    width: 450px;
     font-weight: 600;
     font-size: 32pt;
 }
 
 .trip-details p {
     margin: 6px 0;
-    width: 600px;
+    width: 450px;
     font-weight: 400;
 }
 
 .timeline-container {
     margin: 26px 0;
-    width: 600px;
+    width: 450px;
     display: flex;
     flex-direction: column;
 }
@@ -88,7 +88,7 @@
 .create-stop-button {
     margin: 2px 0;
     padding: 1rem;
-    width: 480px;
+    width: 400px;
     height: 100px;
     display: flex;
     align-items: center;
@@ -108,5 +108,5 @@
 }
 
 .trip-summary {
-    width: 600px;
+    width: 450px;
 }

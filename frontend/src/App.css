@@ -1,12 +1,14 @@
 .root-layout {
   height: 100vh;
   display: grid;
-  grid-template-columns: 220px 1fr 280px;
+  grid-template-columns: 230px 1fr 320px;
   overflow: hidden;
+  transition: grid-template-columns 0.3s var(--transition-timing);
 }
 
 .root-layout.right-closed {
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 230px 1fr 0px;
+  transition: grid-template-columns 0.3s var(--transition-timing);
 }
 
 .left-sidebar {
@@ -20,17 +22,19 @@
 
 .center-timeline {
   padding: 0rem;
-  width: 100%;
+  min-width: 520px;
   overflow-y: auto;
 }
 
 .right-sidebar {
   padding: 0.5rem;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
   border-left: 1px solid var(--border);
   background: var(--bg-secondary);
+  overflow: hidden;
   overflow-y: auto;
 }
 
