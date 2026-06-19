@@ -16,21 +16,72 @@
     align-items: center;
 }
 
-.trip-details h1 {
-    margin: 128px 0 0 0;
+.trip-details {
     width: 450px;
-    font-weight: 600;
-    font-size: 32pt;
 }
 
-.trip-details p {
-    margin: 6px 0;
-    width: 450px;
+.trip-title {
+    margin: 100px 0 4px 0;
+    padding: 0.25rem;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 32pt;
+    color: var(--text-primary);
+    background: transparent;
+    transition: background 0.15s var(--transition-timing);
+}
+
+.trip-desc {
+    padding: 0.25rem;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
     font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--text-primary);
+    background: transparent;
+    resize: none;
+    overflow: hidden;
+    transition: background 0.15s var(--transition-timing);
+}
+
+.trip-date {
+    padding: 0.25rem;
+    width: 19.3%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background: transparent;
+    transition: background 0.15s var(--transition-timing);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.trip-title:hover,
+.trip-desc:hover,
+.trip-date:hover {
+    background: var(--bg-secondary);
+}
+
+.trip-title:focus-visible,
+.trip-desc:focus-visible,
+.trip-date:focus-visible {
+    outline: none;
+    background: var(--bg-tertiary);
 }
 
 .timeline-container {
-    margin: 26px 0;
+    margin: 20px 0;
     width: 450px;
     display: flex;
     flex-direction: column;

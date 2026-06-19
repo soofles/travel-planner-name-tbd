@@ -135,6 +135,7 @@ function App() {
         trip={trips.find(trip => trip.id === selectedTripId) ?? null}
         stops={stops}
         // selectedStop={selectedStopId}
+        onUpdateTrip={handleUpdateTrip}
         onSelectStop={setSelectedStopId}
         onCreateStop={handleCreateStop}
         onDeleteStop={handleDeleteStop}

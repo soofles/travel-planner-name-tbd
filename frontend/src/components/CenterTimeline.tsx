@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { buildTimeline } from "../utils/TimelineBuilder"
 import type { DragEndEvent } from "@dnd-kit/core"
 import type { Trip } from "../types/Trip"
+import type { TripRequest } from "../api/tripAPI"
 import type { Stop } from "../types/Stop"
 import { DndContext, closestCenter, MouseSensor, useSensor, useSensors } from "@dnd-kit/core"
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
@@ -12,6 +13,7 @@ import TravelItem from "./TravelItem"
 interface CenterTimelineProps {
     trip: Trip | null;
     stops: Stop[];
+    onUpdateTrip: (id: number, input: TripRequest) => void;
     onSelectStop: (id: number) => void;
     onCreateStop: () => void;
     onDeleteStop: (id: number) => void;
@@ -21,6 +23,7 @@ interface CenterTimelineProps {
 export default function CenterTimeline({
     trip,
     stops,
+    onUpdateTrip,
     onSelectStop,
     onCreateStop,
     onDeleteStop,
@@ -36,6 +39,13 @@ export default function CenterTimeline({
 
     const [contextStop, setContextStop] = useState<number | null>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [requestData, setRequestData] = useState<TripRequest>({
+        name: "",
+        description: "",
+        start_date: "",
+        end_date: "",
+        budget: 0,
+    })
 
     useEffect(() => {
         const handleClick = () => {
@@ -46,6 +56,34 @@ export default function CenterTimeline({
             window.removeEventListener("click", handleClick);
         }
     })
+
+    useEffect(() => {
+        setRequestData({
+            name: trip.name,
+            description: trip.description,
+            start_date: trip.start_date,
+            end_date: trip.end_date,
+            budget: trip.budget,
+        })
+    }, [trip.id]);
+
+    const handleChange = (
+        field: keyof TripRequest,
+        value: string | number,
+    ) => {
+        setRequestData(prev => ({
+            ...prev,
+            [field]: value,
+        }));
+    };
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            onUpdateTrip(trip.id, requestData);
+        }, 800);
+
+        return () => clearTimeout(timeout);
+    }, [requestData]);
 
     const sensors = useSensors(
         useSensor(MouseSensor, {
@@ -58,9 +96,37 @@ export default function CenterTimeline({
     return (
         <main className="center-timeline">
             <div className="trip-details">
-                <h1>{trip.name}</h1>
-                <p>{trip.description}</p>
-                <p>{trip.start_date} - {trip!.end_date}</p>
+                <input
+                    className="trip-title"
+                    type="text"
+                    value={requestData.name}
+                    onChange={(e) => handleChange("name", e.target.value)}
+                />
+                <textarea
+                    className="trip-desc"
+                    rows={1}
+                    value={requestData.description}
+                    onChange={(e) => {
+                        handleChange("description", e.target.value);
+                        e.target.style.height = "0px";
+                        e.target.style.height = `${e.target.scrollHeight}px`;
+                    }}
+                />
+                <div className="trip-date-container">
+                    <input
+                        className="trip-date"
+                        type="date"
+                        value={requestData.start_date}
+                        onChange={(e) => handleChange("start_date", e.target.value)}
+                    />
+                    <span> — </span>
+                    <input
+                        className="trip-date"
+                        type="date"
+                        value={requestData.end_date}
+                        onChange={(e) => handleChange("end_date", e.target.value)}
+                    />
+                </div>
             </div>
             <div className="timeline-container">
                 <DndContext onDragEnd={onDragEnd} collisionDetection={closestCenter} sensors={sensors}>

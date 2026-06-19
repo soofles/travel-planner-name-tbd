@@ -50,7 +50,7 @@ export default function RightSidebar({
 
     const handleChange = (
         field: keyof StopRequest,
-        value: string | number
+        value: string | number,
     ) => {
         setRequestData(prev => ({
             ...prev,
