@@ -6,9 +6,17 @@ interface TravelProps {
 }
 
 export default function TravelItem({ travel }: TravelProps) {
+    if (!travel.route) {
+        return (
+            <div className="travel-item">
+                {travel.error}
+            </div>
+        )
+    }
+
     return (
         <div className="travel-item">
-            {travel.duration} min {travel.mode}
+            {travel.route.duration_seconds}s - {travel.route.distance_meters}m
         </div>
     )
 }

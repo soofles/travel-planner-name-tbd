@@ -2,11 +2,13 @@ import "./App.css"
 import { useState, useEffect } from "react"
 import type { Trip } from "./types/Trip"
 import type { Stop } from "./types/Stop"
+import type { Travel } from "./types/Travel"
 import type { TripRequest } from "./api/tripAPI"
 import type { StopRequest } from "./api/stopAPI"
 import type { DragEndEvent } from "@dnd-kit/core"
 import { createTrip, getTrips, updateTrip, deleteTrip } from "./api/tripAPI"
 import { createStop, getStops, updateStop, deleteStop, reorderStops } from "./api/stopAPI"
+import { calculateTravels } from "./utils/TravelCalculator"
 import { arrayMove } from "@dnd-kit/sortable"
 import LeftSidebar from "./components/LeftSidebar"
 import CenterTimeline from "./components/CenterTimeline"
@@ -29,6 +31,7 @@ function App() {
   const [selectedTripId, setSelectedTripId] = useState<number | null>(null);
   const [stops, setStops] = useState<Stop[]>([]);
   const [selectedStopId, setSelectedStopId] = useState<number | null>(null);
+  const [travels, setTravels] = useState<Travel[]>([]);
 
   const loadTrips = async () => {
     const res = await getTrips();
@@ -108,6 +111,16 @@ function App() {
     await reorderStops(selectedTripId, input);
   }
 
+  const loadTravels = async () => {
+    const res = await calculateTravels(stops);
+    console.log(res)
+    setTravels(res);
+  };
+
+  useEffect(() => {
+    loadTravels()
+  }, [stops]);
+
   const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
@@ -132,6 +145,7 @@ function App() {
       <CenterTimeline
         trip={trips.find(trip => trip.id === selectedTripId) ?? null}
         stops={stops}
+        travels={travels}
         // selectedStop={selectedStopId}
         onUpdateTrip={handleUpdateTrip}
         onSelectStop={setSelectedStopId}

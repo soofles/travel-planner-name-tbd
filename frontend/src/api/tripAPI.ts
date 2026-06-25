@@ -1,6 +1,6 @@
-import { api } from "./client";
-import type { OkResponse } from "./client";
-import type { Trip } from "../types/Trip";
+import { api } from "./client"
+import type { OkResponse } from "./client"
+import type { Trip } from "../types/Trip"
 
 export interface TripRequest {
     name: string;

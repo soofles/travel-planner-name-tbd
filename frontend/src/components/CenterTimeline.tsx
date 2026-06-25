@@ -5,6 +5,7 @@ import type { DragEndEvent } from "@dnd-kit/core"
 import type { Trip } from "../types/Trip"
 import type { TripRequest } from "../api/tripAPI"
 import type { Stop } from "../types/Stop"
+import type { Travel } from "../types/Travel"
 import { DndContext, closestCenter, MouseSensor, useSensor, useSensors } from "@dnd-kit/core"
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import SortableStopItem from "./SortableStopItem"
@@ -13,6 +14,7 @@ import TravelItem from "./TravelItem"
 interface CenterTimelineProps {
     trip: Trip | null;
     stops: Stop[];
+    travels: Travel[];
     onUpdateTrip: (id: number, input: TripRequest) => void;
     onSelectStop: (id: number) => void;
     onCreateStop: () => void;
@@ -23,6 +25,7 @@ interface CenterTimelineProps {
 export default function CenterTimeline({
     trip,
     stops,
+    travels,
     onUpdateTrip,
     onSelectStop,
     onCreateStop,
@@ -33,6 +36,15 @@ export default function CenterTimeline({
         return (
             <main className="welcome-message">
                 <h1>Select a trip to get started!</h1>
+            </main>
+        )
+    }
+
+    const travelsLoaded = stops.length < 2 || travels.length === stops.length - 1;
+    if (!travelsLoaded) {
+        return (
+            <main className="loading">
+                <h1>Loading trip...</h1>
             </main>
         )
     }
@@ -91,7 +103,8 @@ export default function CenterTimeline({
         })
     );
 
-    const timeline = buildTimeline(stops);
+    const timeline = buildTimeline(stops, travels);
+    console.log(timeline);
 
     return (
         <main className="center-timeline">
