@@ -160,4 +160,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .trip-summary {
     width: 450px;
+    border: 1px solid var(--bg-quaternary);
+    border-radius: 6px;
 }

@@ -113,7 +113,6 @@ function App() {
 
   const loadTravels = async () => {
     const res = await calculateTravels(stops);
-    console.log(res)
     setTravels(res);
   };
 

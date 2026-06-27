@@ -14,9 +14,16 @@ export default function TravelItem({ travel }: TravelProps) {
         )
     }
 
+    const minutes = Math.floor(travel.route.duration_seconds / 60);
+    const rem_seconds = travel.route.duration_seconds % 60;
+    const padded = rem_seconds.toString().padStart(2, '0');
+
+    const miles = travel.route.distance_meters / 1609
+    const miles_rounded = miles.toFixed(2)
+
     return (
         <div className="travel-item">
-            {travel.route.duration_seconds}s - {travel.route.distance_meters}m
+            {`${minutes}:${padded}`} driving - {miles_rounded} miles
         </div>
     )
 }

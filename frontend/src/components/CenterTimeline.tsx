@@ -22,6 +22,13 @@ interface CenterTimelineProps {
     onDragEnd: (e: DragEndEvent) => void;
 }
 
+interface TripSummaryProps {
+    trip: Trip;
+    stops: Stop[];
+    travels: Travel[];
+    onUpdateTrip: (id: number, input: TripRequest) => void;
+}
+
 export default function CenterTimeline({
     trip,
     stops,
@@ -104,7 +111,6 @@ export default function CenterTimeline({
     );
 
     const timeline = buildTimeline(stops, travels);
-    console.log(timeline);
 
     return (
         <main className="center-timeline">
@@ -188,9 +194,12 @@ export default function CenterTimeline({
                     </button>
                 </div>
             </div>
-            <div className="trip-summary">
-                <p>Budget: {trip!.budget}</p>
-            </div>
+            <TripSummary
+                trip={trip}
+                stops={stops}
+                travels={travels}
+                onUpdateTrip={onUpdateTrip}
+            />
 
             {contextStop !== null && (
                 <div
@@ -209,5 +218,56 @@ export default function CenterTimeline({
                 </div>
             )}
         </main>
+    )
+}
+
+function TripSummary({
+    trip,
+    stops,
+    travels,
+    onUpdateTrip,
+}: TripSummaryProps) {
+    return (
+        <div className="trip-summary">
+            <div className="trip-score">
+                <span>Trip Score</span>
+                <span>X / 100</span>
+            </div>
+            <div className="planning-summary">
+                <div className="planning-score">
+                    <span>Planning</span>
+                    <span>X / 100</span>
+                </div>
+
+            </div>
+            <div className="budgeting-summary">
+                <div className="budgeting-score">
+                    <span>Budgeting</span>
+                    <span>X / 100</span>
+                </div>
+
+            </div>
+            <div className="completeness-summary">
+                <div className="completeness-score">
+                    <span>Completeness</span>
+                    <span>X / 100</span>
+                </div>
+
+            </div>
+            <div className="trip-analytics">
+                <div className="cost-estimate">
+                    <span>Estimated Cost</span>
+                    <span>{trip.budget}</span>
+                </div>
+                <div className="distance-estimate">
+                    <span>Distance Traveled</span>
+                    <span>X</span>
+                </div>
+                <div className="stop-count">
+                    <span>Stops</span>
+                    <span>X</span>
+                </div>
+            </div>
+        </div>
     )
 }
