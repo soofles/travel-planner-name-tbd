@@ -102,6 +102,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .stop-line-top {
     width: 4px;
     height: 50%;
+    border-radius: 6px;
     background: var(--text-primary);
 }
 
@@ -115,6 +116,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .stop-line-bottom {
     width: 4px;
     height: 50%;
+    border-radius: 6px;
     background: var(--text-primary);
 }
 
@@ -125,8 +127,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .travel-line {
+    margin: 5px;
     width: 4px;
     height: 100%;
+    border-radius: 6px;
     background: repeating-linear-gradient(
         to bottom,
         var(--text-primary) 0px,
@@ -171,9 +175,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .trip-score {
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0 0.5rem;
     display: flex;
     justify-content: space-between;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.trip-message {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    display: flex;
+    justify-content: flex-end;
     border-bottom: 1px solid var(--bg-quaternary);
     font-weight: 500;
 }
@@ -193,6 +206,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .completeness-score {
     display: flex;
     justify-content: space-between;
+}
+
+.planning-details ul,
+.budgeting-details ul,
+.completeness-details ul {
+    margin: 2px 0;
+    padding-left: 24px;
 }
 
 .trip-analytics {

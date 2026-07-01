@@ -233,26 +233,47 @@ function TripSummary({
                 <span>Trip Score</span>
                 <span>X / 100</span>
             </div>
+            <div className="trip-message">
+                <span>Trip message here!</span>
+            </div>
             <div className="planning-summary">
                 <div className="planning-score">
                     <span>Planning</span>
                     <span>X / 100</span>
                 </div>
-
+                <div className="planning-details">
+                    <ul>
+                        <li>Bullet 1</li>
+                        <li>Bullet 2</li>
+                        <li>Bullet 3</li>
+                    </ul>
+                </div>
             </div>
             <div className="budgeting-summary">
                 <div className="budgeting-score">
                     <span>Budgeting</span>
                     <span>X / 100</span>
                 </div>
-
+                <div className="budgeting-details">
+                    <ul>
+                        <li>Bullet 1</li>
+                        <li>Bullet 2</li>
+                        <li>Bullet 3</li>
+                    </ul>
+                </div>
             </div>
             <div className="completeness-summary">
                 <div className="completeness-score">
                     <span>Completeness</span>
                     <span>X / 100</span>
                 </div>
-
+                <div className="completeness-details">
+                    <ul>
+                        <li>Bullet 1</li>
+                        <li>Bullet 2</li>
+                        <li>Bullet 3</li>
+                    </ul>
+                </div>
             </div>
             <div className="trip-analytics">
                 <div className="cost-estimate">
@@ -265,7 +286,7 @@ function TripSummary({
                 </div>
                 <div className="stop-count">
                     <span>Stops</span>
-                    <span>X</span>
+                    <span>{stops.length}</span>
                 </div>
             </div>
         </div>
