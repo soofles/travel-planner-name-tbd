@@ -1,0 +1,66 @@
+.trip-summary {
+    margin: 0.5rem 0.25rem 100px 0.25rem;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--bg-quaternary);
+    border-radius: 6px;
+    box-shadow:
+        0 0px 4px rgba(0, 0, 0, 0.8),
+        0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.trip-score {
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.trip-message {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid var(--bg-quaternary);
+    font-weight: 500;
+}
+
+.planning-summary,
+.budgeting-summary,
+.completeness-summary {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--bg-quaternary);
+    font-weight: 500;
+}
+
+.planning-score,
+.budgeting-score,
+.completeness-score {
+    display: flex;
+    justify-content: space-between;
+}
+
+.planning-details ul,
+.budgeting-details ul,
+.completeness-details ul {
+    margin: 2px 0;
+    padding-left: 24px;
+}
+
+.trip-analytics {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.cost-estimate,
+.distance-estimate,
+.stop-count {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}

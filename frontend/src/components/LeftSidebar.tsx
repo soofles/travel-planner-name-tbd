@@ -8,6 +8,7 @@ interface LeftSidebarProps {
     onSelectTrip: (id: number) => void;
     onCreateTrip: () => Promise<void>;
     onDeleteTrip: (id: number) => void;
+    onSelectStop: (id: number | null) => void;
     settingsActive: boolean;
     onToggleSettings: (active: boolean) => void;
 }
@@ -18,6 +19,7 @@ export default function LeftSidebar({
     onSelectTrip,
     onCreateTrip,
     onDeleteTrip,
+    onSelectStop,
     settingsActive,
     onToggleSettings,
 }: LeftSidebarProps) {
@@ -57,7 +59,7 @@ export default function LeftSidebar({
                                 setPosition({ x: e.clientX, y: e.clientY });
                             }}
                         >
-                            {/*<span></span>*/}
+                            {/*<span>Emoji</span>*/}
                             <span>{trip.name}</span>
                         </div>
                     )
@@ -65,7 +67,10 @@ export default function LeftSidebar({
             </div>
             <div
                 className={`settings-nav ${settingsActive === true ? "selected" : ""}`}
-                onClick={() => onToggleSettings(true)}
+                onClick={() => {
+                    onSelectStop(null);
+                    onToggleSettings(!settingsActive);
+                }}
             >
                 <span>⚙</span>
                 <span>Settings</span>

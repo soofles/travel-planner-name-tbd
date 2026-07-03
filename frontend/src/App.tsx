@@ -46,7 +46,7 @@ function App() {
   const handleCreateTrip = async () => {
     const date = new Date().toLocaleDateString("en-CA");
     const defaults: TripRequest = {
-      name: "New trip",
+      name: "New Trip",
       description: "Let's start planning your next adventure!",
       start_date: date,
       end_date: date,
@@ -54,6 +54,7 @@ function App() {
     };
     await createTrip(defaults);
     loadTrips();
+    setSelectedTripId(trips.length + 1);
   }
 
   const handleUpdateTrip = async (id: number, input: TripRequest) => {
@@ -95,6 +96,7 @@ function App() {
     }
     await createStop(selectedTripId, defaults);
     loadStops();
+    setSelectedStopId(stops.length + 1);
   }
 
   const handleUpdateStop = async (id: number, input: StopRequest) => {
@@ -103,6 +105,7 @@ function App() {
   }
 
   const handleDeleteStop = async (id: number) => {
+    setSelectedStopId(null);
     await deleteStop(id);
     loadStops();
   }
@@ -141,6 +144,7 @@ function App() {
         onSelectTrip={setSelectedTripId}
         onCreateTrip={handleCreateTrip}
         onDeleteTrip={handleDeleteTrip}
+        onSelectStop={setSelectedStopId}
         settingsActive={settingsActive}
         onToggleSettings={setSettingsActive}
       />

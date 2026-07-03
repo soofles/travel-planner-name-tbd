@@ -10,6 +10,8 @@ import { DndContext, closestCenter, MouseSensor, useSensor, useSensors } from "@
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import SortableStopItem from "./SortableStopItem"
 import TravelItem from "./TravelItem"
+import TripSummary from "./TripSummary"
+import Settings from "./Settings"
 
 interface CenterTimelineProps {
     trip: Trip | null;
@@ -21,17 +23,6 @@ interface CenterTimelineProps {
     onDeleteStop: (id: number) => void;
     onDragEnd: (e: DragEndEvent) => void;
     settingsActive: boolean;
-    onToggleSettings: (active: boolean) => void;
-}
-
-interface TripSummaryProps {
-    trip: Trip;
-    stops: Stop[];
-    travels: Travel[];
-    onUpdateTrip: (id: number, input: TripRequest) => void;
-}
-
-interface SettingsProps {
     onToggleSettings: (active: boolean) => void;
 }
 
@@ -234,87 +225,5 @@ export default function CenterTimeline({
                 </div>
             )}
         </main>
-    )
-}
-
-function TripSummary({
-    trip,
-    stops,
-    travels,
-    onUpdateTrip,
-}: TripSummaryProps) {
-    return (
-        <div className="trip-summary">
-            <div className="trip-score">
-                <span>Trip Score</span>
-                <span>X / 100</span>
-            </div>
-            <div className="trip-message">
-                <span>Trip message here!</span>
-            </div>
-            <div className="planning-summary">
-                <div className="planning-score">
-                    <span>Planning</span>
-                    <span>X / 100</span>
-                </div>
-                <div className="planning-details">
-                    <ul>
-                        <li>Bullet 1</li>
-                        <li>Bullet 2</li>
-                        <li>Bullet 3</li>
-                    </ul>
-                </div>
-            </div>
-            <div className="budgeting-summary">
-                <div className="budgeting-score">
-                    <span>Budgeting</span>
-                    <span>X / 100</span>
-                </div>
-                <div className="budgeting-details">
-                    <ul>
-                        <li>Bullet 1</li>
-                        <li>Bullet 2</li>
-                        <li>Bullet 3</li>
-                    </ul>
-                </div>
-            </div>
-            <div className="completeness-summary">
-                <div className="completeness-score">
-                    <span>Completeness</span>
-                    <span>X / 100</span>
-                </div>
-                <div className="completeness-details">
-                    <ul>
-                        <li>Bullet 1</li>
-                        <li>Bullet 2</li>
-                        <li>Bullet 3</li>
-                    </ul>
-                </div>
-            </div>
-            <div className="trip-analytics">
-                <div className="cost-estimate">
-                    <span>Estimated Cost</span>
-                    <span>{trip.budget}</span>
-                </div>
-                <div className="distance-estimate">
-                    <span>Distance Traveled</span>
-                    <span>X</span>
-                </div>
-                <div className="stop-count">
-                    <span>Stops</span>
-                    <span>{stops.length}</span>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-function Settings({
-    onToggleSettings,
-}: SettingsProps) {
-    return (
-        <div onClick={() => onToggleSettings(false)}>
-            close settings
-        </div>
     )
 }
