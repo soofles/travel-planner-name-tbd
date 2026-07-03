@@ -17,6 +17,7 @@ interface CenterTimelineProps {
     trip: Trip | null;
     stops: Stop[];
     travels: Travel[];
+    selectedStopId: number | null;
     onUpdateTrip: (id: number, input: TripRequest) => void;
     onSelectStop: (id: number) => void;
     onCreateStop: () => void;
@@ -30,6 +31,7 @@ export default function CenterTimeline({
     trip,
     stops,
     travels,
+    selectedStopId,
     onUpdateTrip,
     onSelectStop,
     onCreateStop,
@@ -138,6 +140,15 @@ export default function CenterTimeline({
                         e.target.style.height = `${e.target.scrollHeight}px`;
                     }}
                 />
+                <div className="trip-budget-container">
+                    <span>$</span>
+                    <input
+                        className="trip-budget"
+                        type="number"
+                        value={requestData.budget}
+                        onChange={(e) => handleChange("budget", e.target.value)}
+                    />
+                </div>
                 <div className="trip-date-container">
                     <input
                         className="trip-date"

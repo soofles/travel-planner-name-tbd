@@ -57,7 +57,7 @@ label {
 .stop-name input,
 .stop-category select,
 .stop-desc textarea,
-.stop-cost input,
+.stop-cost-input,
 .stop-address input,
 .stop-time-zone input,
 .stop-arrival input,
@@ -74,15 +74,42 @@ label {
     transition: outline 0.3s var(--transition-timing);
 }
 
+.stop-cost-input {
+    position: relative;
+    padding: 0;
+}
+
+.stop-cost-input span {
+    position: absolute;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    line-height: 1.5rem;
+    pointer-events: none;
+}
+
+.stop-cost input {
+    width: 91.5%;
+    padding: 0.5rem 0.5rem 0.5rem 1.1rem;
+    border: none;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--text-primary);
+    background: transparent;
+}
+
 .stop-name input:focus-visible,
 .stop-category select:focus-visible,
 .stop-desc textarea:focus-visible,
-.stop-cost input:focus-visible,
+.stop-cost-input:focus-within,
 .stop-address input:focus-visible,
 .stop-time-zone input:focus-visible,
 .stop-arrival input:focus-visible,
 .stop-departure input:focus-visible {
     outline: 1px solid var(--text-primary);
+}
+
+.stop-cost input {
+    outline: none;
 }
 
 .save-stop-button,

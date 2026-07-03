@@ -22,7 +22,7 @@
 
 .trip-title {
     margin: 100px 0 4px 0;
-    padding: 0.25rem;
+    padding: 0.1rem 0.25rem;
     width: 100%;
     border: none;
     border-radius: 6px;
@@ -35,7 +35,7 @@
 }
 
 .trip-desc {
-    padding: 0.25rem;
+    padding: 0.1rem 0.25rem;
     width: 100%;
     border: none;
     border-radius: 6px;
@@ -48,6 +48,45 @@
     resize: none;
     overflow: hidden;
     transition: background 0.15s var(--transition-timing);
+}
+
+.trip-budget-container {
+    position: relative;
+    padding: 0.1rem 0.25rem;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--text-primary);
+    overflow: hidden;
+    transition: background 0.15s var(--transition-timing);
+}
+
+.trip-budget-container span {
+    position: absolute;
+    padding: 1px 0;
+    line-height: 1.5rem;
+    pointer-events: none;
+}
+
+.trip-budget {
+    padding-left: 0.6rem;
+    width: 97%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--text-primary);
+    background: transparent;
+    overflow: hidden;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .trip-date {
@@ -69,12 +108,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .trip-title:hover,
 .trip-desc:hover,
+.trip-budget-container:hover,
 .trip-date:hover {
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
 }
 
 .trip-title:focus-visible,
 .trip-desc:focus-visible,
+.trip-budget-container:focus-within,
+.trip-budget:focus-visible,
 .trip-date:focus-visible {
     outline: none;
     background: var(--bg-tertiary);

@@ -1,3 +1,4 @@
+import "./TripSummary.css"
 import type { Trip } from "../types/Trip"
 import type { TripRequest } from "../api/tripAPI";
 import type { Stop } from "../types/Stop"

@@ -94,11 +94,14 @@ export default function RightSidebar({
             </div>
             <div className="stop-cost">
                 <label>Cost</label>
-                <input
-                    type="number"
-                    value={requestData.cost}
-                    onChange={(e) => handleChange("cost", Number(e.target.value))}
-                />
+                <div className="stop-cost-input">
+                    <span>$</span>
+                    <input
+                        type="number"
+                        value={requestData.cost}
+                        onChange={(e) => handleChange("cost", Number(e.target.value))}
+                    />
+                </div>
             </div>
             <div className="stop-address">
                 <label>Address</label>
