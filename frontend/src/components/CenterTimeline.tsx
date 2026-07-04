@@ -173,9 +173,9 @@ export default function CenterTimeline({
                             return (
                                 <div className="stop-container">
                                     <div className="stop-rail">
-                                        <div className="stop-line-top"></div>
-                                        <div className="stop-marker"></div>
-                                        <div className="stop-line-bottom"></div>
+                                        <div className={`stop-line-top ${item.data.id === selectedStopId ? "selected" : ""}`}></div>
+                                        <div className={`stop-marker ${item.data.id === selectedStopId ? "selected" : ""}`}></div>
+                                        <div className={`stop-line-bottom ${item.data.id === selectedStopId ? "selected" : ""}`}></div>
                                     </div>
                                     <SortableStopItem
                                         key={item.data.id}
@@ -200,6 +200,11 @@ export default function CenterTimeline({
                     })}
                     </SortableContext>
                 </DndContext>
+                <div className="travel-container-short">
+                    <div className="travel-rail">
+                        <div className="travel-line"></div>
+                    </div>
+                </div>
                 <div className="stop-container">
                     <div className="stop-rail">
                         <div className="stop-line-top"></div>

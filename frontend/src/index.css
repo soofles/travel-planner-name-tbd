@@ -7,14 +7,12 @@
   --border: #323232;
   --shadow: rgba(0, 0, 0, 0.25);
 
-  --text-primary: #ebebeb;
+  --text-primary: #EBEBEB;
   --text-secondary: #B2B2B2;
 
-  --accent: #4f8cff;
-
-  --success: #4caf50;
-  --warning: #ffb74d;
-  --danger: #ef5350;
+  --accent-blue: #89B2FD;
+  --accent-green: #87BE73;
+  --accent-red: #EB5252;
 
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }

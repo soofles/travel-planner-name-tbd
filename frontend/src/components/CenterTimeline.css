@@ -146,13 +146,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 50%;
     border-radius: 6px;
     background: var(--text-primary);
+    transition: background 0.3s var(--transition-timing);
 }
 
 .stop-marker {
     width: 14px;
-    height: 14px;
+    height: 16px;
     border-radius: 50%;
     background: var(--text-primary);
+    transition: background 0.3s var(--transition-timing);
 }
 
 .stop-line-bottom {
@@ -160,10 +162,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 50%;
     border-radius: 6px;
     background: var(--text-primary);
+    transition: background 0.3s var(--transition-timing);
+}
+
+.stop-line-top.selected,
+.stop-marker.selected,
+.stop-line-bottom.selected {
+    background: var(--accent-blue);
 }
 
 .travel-container {
     height: 100px;
+    display: flex;
+    align-items: stretch;
+}
+
+.travel-container-short {
+    height: 64px;
     display: flex;
     align-items: stretch;
 }
@@ -175,11 +190,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 6px;
     background: repeating-linear-gradient(
         to bottom,
-        var(--text-primary) 0px,
-        var(--text-primary) 6px,
+        var(--text-secondary) 0px,
+        var(--text-secondary) 6px,
         transparent 6px,
         transparent 12px
     );
+}
+
+.plus {
+    padding-bottom: 2px;
 }
 
 .create-stop-button {
@@ -194,7 +213,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 6px;
     font-family: Inter, system-ui, sans-serif;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: var(--text-secondary);
     background: transparent;
     cursor: pointer;

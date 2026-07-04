@@ -1,7 +1,7 @@
 .root-layout {
   height: 100vh;
   display: grid;
-  grid-template-columns: 230px 1fr 320px;
+  grid-template-columns: 240px 1fr 320px;
   overflow: hidden;
   transition: grid-template-columns 0.3s var(--transition-timing);
 }
