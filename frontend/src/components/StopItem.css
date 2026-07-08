@@ -4,6 +4,7 @@
     min-height: 91px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-self: center;
     border-radius: 6px;
     background: var(--bg-primary);

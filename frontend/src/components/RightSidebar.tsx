@@ -82,7 +82,10 @@ export default function RightSidebar({
                     <option value="Lodging">Lodging</option>
                     <option value="Dining">Dining</option>
                     <option value="Sightseeing">Sightseeing</option>
+                    <option value="Activity">Activity</option>
                     <option value="Transit">Transit</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             <div className="stop-desc">
