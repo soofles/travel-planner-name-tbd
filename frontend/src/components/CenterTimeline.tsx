@@ -217,21 +217,24 @@ export default function CenterTimeline({
                     </button>
                 </div>
             </div>
-            <TripSummary
+            {/*<TripSummary
                 trip={trip}
                 stops={stops}
                 travels={travels}
                 onUpdateTrip={onUpdateTrip}
-            />
+            />*/}
 
             {contextStop !== null && (
                 <div
                     style={{
+                        position:"fixed",
                         top: position.y,
                         left: position.x,
+                        zIndex: 1000,
                     }}
+                    className="context-menu"
                 >
-                    <button onClick={async () => {
+                    <button className="context-menu-button" onClick={async () => {
                         if(contextStop === null) return;
                         onDeleteStop(contextStop);
                         setContextStop(null);

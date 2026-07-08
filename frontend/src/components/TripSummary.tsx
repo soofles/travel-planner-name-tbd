@@ -16,7 +16,6 @@ export default function TripSummary({
     trip,
     stops,
     travels,
-    onUpdateTrip,
 }: TripSummaryProps) {
     const scores = getTripScore(stops, travels, trip.budget);
     

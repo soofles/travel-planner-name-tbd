@@ -82,7 +82,7 @@ export default function LeftSidebar({
                         position: "fixed",
                         top: position.y,
                         left: position.x,
-                        zIndex: 1000
+                        zIndex: 1000,
                     }}
                     className="context-menu"
                 >

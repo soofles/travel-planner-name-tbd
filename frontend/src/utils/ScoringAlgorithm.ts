@@ -25,7 +25,12 @@ export function getPlanningScore(stops: Stop[], travels: Travel[]): number {
 }
 
 export function getBudgetingScore(stops: Stop[], budget: number): number {
-    return 80;
+    const cost = stops.reduce((sum, stop) => sum + stop.cost, 0);
+    const delta = budget - cost
+    if (delta >= 0)
+        return 100;
+    else
+        return Math.round(100 + delta * 0.3);
 }
 
 export function getCompletenessScore(stops: Stop[]): number {

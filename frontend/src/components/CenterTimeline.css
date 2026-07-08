@@ -1,10 +1,12 @@
-.welcome-message {
+.welcome-message,
+.loading {
     width: 100%;
     justify-content: center;
     align-content: center;
 }
 
-.welcome-message h1 {
+.welcome-message h1,
+.loading h1 {
     font-weight: 600;
     font-size: 3rem;
     text-align: center;
@@ -129,9 +131,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
 }
 
-.stop-container {
+.stop-container,
+.stop-button-container {
     display: flex;
     align-items: stretch;
+}
+
+.stop-button-container {
+    margin-bottom: 100px;
 }
 
 .stop-rail, .travel-rail {

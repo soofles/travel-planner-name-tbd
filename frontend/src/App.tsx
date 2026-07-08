@@ -45,6 +45,7 @@ function App() {
 
   const handleCreateTrip = async () => {
     const date = new Date().toLocaleDateString("en-CA");
+    const dateTruncated = date.slice(0, 16);
     const defaults: TripRequest = {
       name: "New Trip",
       description: "Let's start planning your next adventure!",
