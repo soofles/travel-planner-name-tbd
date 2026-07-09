@@ -1,4 +1,4 @@
-import type { Stop } from "../types/Stop"
+/* import type { Stop } from "../types/Stop"
 import type { Travel } from "../types/Travel"
 
 interface TripScore {
@@ -35,4 +35,4 @@ export function getBudgetingScore(stops: Stop[], budget: number): number {
 
 export function getCompletenessScore(stops: Stop[]): number {
     return 20;
-}
+} */

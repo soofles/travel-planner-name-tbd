@@ -10,29 +10,18 @@ import { createTrip, getTrips, updateTrip, deleteTrip } from "./api/tripAPI"
 import { createStop, getStops, updateStop, deleteStop, reorderStops } from "./api/stopAPI"
 import { calculateTravels } from "./utils/TravelCalculator"
 import { arrayMove } from "@dnd-kit/sortable"
-import LeftSidebar from "./components/LeftSidebar"
-import CenterTimeline from "./components/CenterTimeline"
-import RightSidebar from "./components/RightSidebar"
+import TitleBar from "./components/TitleBar/TitleBar"
+import LeftSidebar from "./components/LeftSidebar/LeftSidebar"
+import CenterTimeline from "./components/CenterTimeline/CenterTimeline"
+import RightSidebar from "./components/RightSidebar/RightSidebar"
 
 function App() {
-  /* const [message, setMessage] = useState("Loading...");
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000")
-      .then((response) => response.json())
-      .then((data) => setMessage(data.message))
-      .catch((error) => {
-        console.error(error);
-        setMessage("Failed to connect");
-      });
-  }, []); */
-
   const [trips, setTrips] = useState<Trip[]>([]);
   const [selectedTripId, setSelectedTripId] = useState<number | null>(null);
   const [stops, setStops] = useState<Stop[]>([]);
   const [selectedStopId, setSelectedStopId] = useState<number | null>(null);
   const [travels, setTravels] = useState<Travel[]>([]);
-  const [settingsActive, setSettingsActive] = useState(false);
+  const [pageActive, setPageActive] = useState("");
 
   const loadTrips = async () => {
     const res = await getTrips();
@@ -49,8 +38,8 @@ function App() {
     const defaults: TripRequest = {
       name: "New Trip",
       description: "Let's start planning your next adventure!",
-      start_date: date,
-      end_date: date,
+      start_date: dateTruncated,
+      end_date: dateTruncated,
       budget: 0,
     };
     await createTrip(defaults);
@@ -138,36 +127,40 @@ function App() {
   }
 
   return (
-    <div className={`root-layout ${selectedStopId === null ? "right-closed" : ""}`}>
-      <LeftSidebar
-        trips={trips}
-        selectedTripId={selectedTripId}
-        onSelectTrip={setSelectedTripId}
-        onCreateTrip={handleCreateTrip}
-        onDeleteTrip={handleDeleteTrip}
-        onSelectStop={setSelectedStopId}
-        settingsActive={settingsActive}
-        onToggleSettings={setSettingsActive}
+    <div className="root-layout">
+      <TitleBar
       />
-      <CenterTimeline
-        trip={trips.find(trip => trip.id === selectedTripId) ?? null}
-        stops={stops}
-        travels={travels}
-        selectedStopId={selectedStopId}
-        onUpdateTrip={handleUpdateTrip}
-        onSelectStop={setSelectedStopId}
-        onCreateStop={handleCreateStop}
-        onDeleteStop={handleDeleteStop}
-        onDragEnd={handleDragEnd}
-        settingsActive={settingsActive}
-        onToggleSettings={setSettingsActive}
-      />
-      <RightSidebar
-        stop={stops.find(stop => stop.id === selectedStopId) ?? null}
-        onCloseStop={setSelectedStopId}
-        onUpdateStop={handleUpdateStop}
-        onDeleteStop={handleDeleteStop}
-      />
+      <div className={`app-layout ${selectedStopId === null ? "right-closed" : ""}`}>
+        <LeftSidebar
+          trips={trips}
+          selectedTripId={selectedTripId}
+          onSelectTrip={setSelectedTripId}
+          onCreateTrip={handleCreateTrip}
+          onDeleteTrip={handleDeleteTrip}
+          onSelectStop={setSelectedStopId}
+          pageActive={pageActive}
+          onTogglePage={setPageActive}
+        />
+        <CenterTimeline
+          trip={trips.find(trip => trip.id === selectedTripId) ?? null}
+          stops={stops}
+          travels={travels}
+          selectedStopId={selectedStopId}
+          onUpdateTrip={handleUpdateTrip}
+          onSelectStop={setSelectedStopId}
+          onCreateStop={handleCreateStop}
+          onDeleteStop={handleDeleteStop}
+          onDragEnd={handleDragEnd}
+          pageActive={pageActive}
+          onTogglePage={setPageActive}
+        />
+        <RightSidebar
+          stop={stops.find(stop => stop.id === selectedStopId) ?? null}
+          onCloseStop={setSelectedStopId}
+          onUpdateStop={handleUpdateStop}
+          onDeleteStop={handleDeleteStop}
+        />
+      </div>
     </div>
   );
 }

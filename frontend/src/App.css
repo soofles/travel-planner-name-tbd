@@ -1,4 +1,11 @@
 .root-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.app-layout {
   height: 100vh;
   display: grid;
   grid-template-columns: 230px 1fr 320px;
@@ -6,7 +13,7 @@
   transition: grid-template-columns 0.3s var(--transition-timing);
 }
 
-.root-layout.right-closed {
+.app-layout.right-closed {
   grid-template-columns: 230px 1fr 0px;
   transition: grid-template-columns 0.3s var(--transition-timing);
 }

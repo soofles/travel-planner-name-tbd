@@ -1,0 +1,59 @@
+.about {
+    margin: 100px auto;
+    padding: 0 50px;
+    min-width: 315px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-tertiary) transparent;
+}
+
+.about span {
+    margin-top: 24px;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.about p {
+    margin: 8px 0;
+}
+
+.about strong {
+    font-weight: 600;
+}
+
+.about a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    transition: color 0.15s var(--transition-timing)
+}
+
+.about a:hover {
+    color: var(--accent-blue);
+}
+
+.close-about-button {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    padding: 0 0 7px 0;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 6px;
+    font-weight: 300;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    background: none;
+    cursor: pointer;
+}
+
+.close-about-button:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}

@@ -1,0 +1,117 @@
+.create-trip-button {
+    margin: 24px 0; 
+    padding: 8px 12px;
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    background: transparent;
+    cursor: pointer;
+}
+
+.create-trip-button:hover {
+    background: var(--bg-tertiary);
+}
+
+.plus {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.trip-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.trip {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.trip:hover {
+    background: var(--bg-tertiary);
+}
+
+.trip.selected {
+    border-radius: 6px;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}
+
+.trip.selected:hover {
+    background: var(--bg-quaternary);
+}
+
+.extra-pages {
+    margin-top: auto;
+    margin-bottom: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.settings-nav,
+.about-nav {
+    padding: 8px 12px;
+    display: flex;
+    gap: 8px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.settings-nav:hover,
+.about-nav:hover {
+    background: var(--bg-tertiary);
+}
+
+.settings-nav.selected,
+.about-nav.selected {
+    border-radius: 6px;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}
+
+.settings-nav.selected:hover,
+.about-nav.selected:hover {
+    background: var(--bg-quaternary);
+}
+
+.context-menu {
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-secondary);
+    box-shadow: 0 10px 30px var(--shadow);
+}
+
+.context-menu-button {
+    padding: 8px 12px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: left;
+    color: var(--text-primary);
+    background: transparent;
+    cursor: pointer;
+}
+
+.context-menu-button:hover {
+    background: var(--bg-tertiary);
+}

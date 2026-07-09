@@ -1,0 +1,231 @@
+.welcome-message,
+.loading {
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+.welcome-message h1,
+.loading h1 {
+    font-weight: 600;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.center-timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trip-details {
+    width: 450px;
+}
+
+.trip-title {
+    margin: 100px 0 4px 0;
+    padding: 0.1rem 0.25rem;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 3rem;
+    color: var(--text-primary);
+    background: transparent;
+    transition: background 0.15s var(--transition-timing);
+}
+
+.trip-desc {
+    padding: 0.1rem 0.25rem;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--text-primary);
+    background: transparent;
+    resize: none;
+    overflow: hidden;
+    transition: background 0.15s var(--transition-timing);
+}
+
+.trip-budget-container {
+    position: relative;
+    padding: 0.1rem 0.25rem;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--text-primary);
+    overflow: hidden;
+    transition: background 0.15s var(--transition-timing);
+}
+
+.trip-budget-container span {
+    position: absolute;
+    padding: 1px 0;
+    line-height: 1.5rem;
+    pointer-events: none;
+}
+
+.trip-budget {
+    padding-left: 0.6rem;
+    width: 97%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--text-primary);
+    background: transparent;
+    overflow: hidden;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.trip-date {
+    padding: 0.25rem;
+    width: 19.3%;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background: transparent;
+    transition: background 0.15s var(--transition-timing);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.trip-title:hover,
+.trip-desc:hover,
+.trip-budget-container:hover,
+.trip-date:hover {
+    background: var(--bg-tertiary);
+}
+
+.trip-title:focus-visible,
+.trip-desc:focus-visible,
+.trip-budget-container:focus-within,
+.trip-budget:focus-visible,
+.trip-date:focus-visible {
+    outline: none;
+    background: var(--bg-tertiary);
+}
+
+.timeline-container {
+    margin: 20px 0;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stop-container,
+.stop-button-container {
+    display: flex;
+    align-items: stretch;
+}
+
+.stop-button-container {
+    margin-bottom: 100px;
+}
+
+.stop-rail, .travel-rail {
+    width: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stop-line-top {
+    width: 4px;
+    height: 50%;
+    border-radius: 6px;
+    background: var(--text-primary);
+    transition: background 0.3s var(--transition-timing);
+}
+
+.stop-marker {
+    width: 14px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    transition: background 0.3s var(--transition-timing);
+}
+
+.stop-line-bottom {
+    width: 4px;
+    height: 50%;
+    border-radius: 6px;
+    background: var(--text-primary);
+    transition: background 0.3s var(--transition-timing);
+}
+
+.stop-line-top.selected,
+.stop-marker.selected,
+.stop-line-bottom.selected {
+    background: var(--accent-blue);
+}
+
+.travel-container {
+    height: 100px;
+    display: flex;
+    align-items: stretch;
+}
+
+.travel-container-short {
+    height: 64px;
+    display: flex;
+    align-items: stretch;
+}
+
+.travel-line {
+    margin: 5px;
+    width: 4px;
+    height: 100%;
+    border-radius: 6px;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--text-secondary) 0px,
+        var(--text-secondary) 6px,
+        transparent 6px,
+        transparent 12px
+    );
+}
+
+.plus {
+    padding-bottom: 2px;
+}
+
+.create-stop-button {
+    margin: 2px 0;
+    padding: 1rem;
+    width: 400px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 6px;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    background: transparent;
+    cursor: pointer;
+}
+
+.create-stop-button:hover {
+    background: var(--bg-secondary);
+}

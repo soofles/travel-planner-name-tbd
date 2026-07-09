@@ -1,34 +1,62 @@
 {
-  "name": "travel-planner-name-tbd",
-  "version": "1.0.0",
-  "description": "[insert name here] is a travel planner desktop app.",
+  "name": "enroute",
+  "version": "0.1.0",
+  "description": "Enroute is a travel planner desktop app.",
   "main": "dist-electron/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "cd frontend && npm run dev",
     "electron": "wait-on http://localhost:5173 && electron .",
-    "dev": "concurrently \"npm run frontend\" \"npm run electron\""
+    "dev": "concurrently \"npm run frontend\" \"npm run watch:electron\" \"npm run electron\"",
+    "build:frontend": "cd frontend && npm run build",
+    "build:electron": "tsc -p tsconfig.electron.json",
+    "watch:electron": "tsc -p tsconfig.electron.json --watch",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.soofles.enroute",
+    "productName": "Enroute",
+    "icon": "icon.ico",
+    "files": [
+      "dist-electron/**/*",
+      "frontend/dist/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/EnrouteBackend.exe",
+        "to": "Enroute.exe"
+      },
+      {
+        "from": "secrets/config.json",
+        "to": "config.json"
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    }
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soofles/travel-planner-name-tbd.git"
+    "url": "git+https://github.com/soofles/enroute.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/soofles/travel-planner-name-tbd/issues"
+    "url": "https://github.com/soofles/enroute/issues"
   },
-  "homepage": "https://github.com/soofles/travel-planner-name-tbd#readme",
-  "dependencies": {
-    "electron": "^42.3.0"
-  },
+  "homepage": "https://github.com/soofles/enroute#readme",
   "devDependencies": {
     "concurrently": "^10.0.0",
+    "electron": "^43.1.0",
+    "electron-builder": "^26.15.3",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
     "wait-on": "^9.0.10"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }

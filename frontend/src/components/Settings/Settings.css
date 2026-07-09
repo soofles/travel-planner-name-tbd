@@ -1,0 +1,67 @@
+.settings {
+    margin: 100px auto;
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-tertiary) transparent;
+}
+
+.settings-timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-title {
+    margin-top: 24px;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.settings-message {
+    margin: 8px 0;
+}
+
+.settings-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.settings-row {
+    display: flex;
+    gap: 100px;
+}
+
+.settings-item {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+}
+
+.close-settings-button {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    padding: 0 0 7px 0;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 6px;
+    font-weight: 300;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    background: none;
+    cursor: pointer;
+}
+
+.close-settings-button:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}

@@ -14,6 +14,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "null",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -234,3 +235,12 @@ def get_route(
             Route.profile == "driving-car",
         )).first()
     return route
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(
+        app,
+        host="127.0.0.1",
+        port=8000,
+    )

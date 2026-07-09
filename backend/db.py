@@ -1,6 +1,10 @@
 from sqlmodel import SQLModel, create_engine, Session
+from config import get_db_path
 
-DATABASE_URL = "sqlite:///./trips.db"
+db_path = get_db_path()
+DATABASE_URL = f"sqlite:///{db_path}"
+
+print(f"Database Path: {db_path}")
 
 engine = create_engine(
     DATABASE_URL,
