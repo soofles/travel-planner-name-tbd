@@ -1,8 +1,8 @@
 import "./TripSummary.css"
-import type { Trip } from "../types/Trip"
-import type { TripRequest } from "../api/tripAPI"
-import type { Stop } from "../types/Stop"
-import type { Travel } from "../types/Travel"
+import type { Trip } from "../../types/Trip"
+import type { TripRequest } from "../../api/tripAPI"
+import type { Stop } from "../../types/Stop"
+import type { Travel } from "../../types/Travel"
 // import { getTripScore } from "../utils/ScoringAlgorithm"
 
 interface TripSummaryProps {

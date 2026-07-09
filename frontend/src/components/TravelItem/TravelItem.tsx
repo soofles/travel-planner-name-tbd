@@ -1,5 +1,5 @@
 import "./TravelItem.css"
-import type { Travel } from "../types/Travel"
+import type { Travel } from "../../types/Travel"
 
 interface TravelProps {
     travel: Travel;

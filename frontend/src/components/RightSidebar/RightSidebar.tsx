@@ -1,7 +1,7 @@
 import "./RightSidebar.css"
 import { useState, useEffect } from "react"
-import type { Stop } from "../types/Stop"
-import type { StopRequest } from "../api/stopAPI"
+import type { Stop } from "../../types/Stop"
+import type { StopRequest } from "../../api/stopAPI"
 
 interface RightSidebarProps {
     stop: Stop | null;
