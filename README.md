@@ -25,7 +25,7 @@ No user account is required to use the app, and all of your data is stored local
 3. Run the installer
 4. The app should automatically run upon finishing the installation. If not, feel free to search for it through your Windows search bar!
 
-By default, our data is preserved on your machine after uninstalling through Windows Settings. If you want to delete all traces of the app from your machine, you can delete these folders:
+By default, your data is preserved on your machine after uninstalling through Windows Settings. If you want to delete all traces of the app from your machine, you can delete these folders:
 - ```C:\Users\[user]\AppData\Local\enroute-updater```
 - ```C:\Users\[user]\AppData\Roaming\enroute```
 
