@@ -15,7 +15,7 @@ export async function calculateTravels(stops: Stop[]): Promise<Travel[]> {
                 origin_id: origin.id,
                 destination_id: destination.id,
                 route: null,
-                error: "Missing address for route calculation"
+                error: "Missing address for route"
             })
             continue
         }

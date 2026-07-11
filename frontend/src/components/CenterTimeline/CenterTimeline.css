@@ -131,14 +131,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
 }
 
-.stop-container,
-.stop-button-container {
+.stop-container {
     display: flex;
     align-items: stretch;
-}
-
-.stop-button-container {
-    margin-bottom: 100px;
 }
 
 .stop-rail, .travel-rail {

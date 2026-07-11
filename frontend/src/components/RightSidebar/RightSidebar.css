@@ -112,16 +112,29 @@ label {
     outline: none;
 }
 
+.stop-button-container {
+    margin: 12px 0 24px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
 .save-stop-button,
 .delete-stop-button {
     padding: 8px 12px;
     border-radius: 6px;
-    font-weight: 500;
+    border: none;
+    font-family: Inter, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
     color: var(--text-secondary);
+    background: var(--bg-tertiary);
     cursor: pointer;
 }
 
 .save-stop-button:hover,
 .delete-stop-button:hover {
-    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    background: var(--bg-quaternary);
 }

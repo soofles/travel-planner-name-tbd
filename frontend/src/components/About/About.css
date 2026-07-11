@@ -24,6 +24,7 @@
 }
 
 .about a {
+    width: fit-content;
     color: var(--text-secondary);
     text-decoration: underline;
     transition: color 0.15s var(--transition-timing)

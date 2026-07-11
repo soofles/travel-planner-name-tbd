@@ -99,11 +99,11 @@ export default function LeftSidebar({
                     }}>
                         Change Icon
                     </button>*/}
-                    <button className="context-menu-button" onClick={async () => {
+                    {/*<button className="context-menu-button" onClick={async () => {
 
                     }}>
                         Rename
-                    </button>
+                    </button>*/}
                     <button className="context-menu-button" onClick={async () => {
                         if(contextTrip === null) return;
                         onDeleteTrip(contextTrip);

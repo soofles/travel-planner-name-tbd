@@ -209,11 +209,25 @@ export default function CenterTimeline({
                     })}
                     </SortableContext>
                 </DndContext>
-                <div className="travel-container-short">
-                    <div className="travel-rail">
-                        <div className="travel-line"></div>
+                {stops.length !== 0 ?
+                <>
+                    <div className="travel-container-short">
+                        <div className="travel-rail">
+                            <div className="travel-line"></div>
+                        </div>
                     </div>
-                </div>
+                    <div className="stop-container">
+                        <div className="stop-rail">
+                            <div className="stop-line-top"></div>
+                            <div className="stop-marker"></div>
+                            <div className="stop-line-bottom"></div>
+                        </div>
+                        <button className="create-stop-button" onClick={onCreateStop}>
+                            <span className="plus">+</span>
+                            <span>Add stop</span>
+                        </button>
+                    </div>
+                </> :
                 <div className="stop-container">
                     <div className="stop-rail">
                         <div className="stop-line-top"></div>
@@ -224,7 +238,7 @@ export default function CenterTimeline({
                         <span className="plus">+</span>
                         <span>Add stop</span>
                     </button>
-                </div>
+                </div>}
             </div>
             <TripSummary
                 trip={trip}

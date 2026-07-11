@@ -25,7 +25,7 @@ export default function TripSummary({
     const totalDistRounded = totalDistance.toFixed(2);
     
     const totalTimeSeconds = travels.reduce((sum, travel) => sum + (travel.route === null ? 0 : travel.route.duration_seconds), 0);
-    const totalTimeMinutes = totalTimeSeconds / 60;
+    const totalTimeMinutes = Math.floor(totalTimeSeconds / 60);
     const totalTimeRemainder = (totalTimeSeconds % 60).toString().padStart(2, "0");
     return (
         <div className="trip-summary">
@@ -82,15 +82,15 @@ export default function TripSummary({
                 </div>
                 <div className="trip-stat">
                     <span>Estimated Cost</span>
-                    <span>{totalCost}</span>
+                    <span>${totalCost}</span>
                 </div>
                 <div className="trip-stat">
                     <span>Initial Budget vs Estimated Cost</span>
-                    <span>{trip.budget - totalCost}</span>
+                    <span>${trip.budget - totalCost}</span>
                 </div>
                 <div className="trip-stat">
                     <span>Distance Traveled</span>
-                    <span>{totalDistRounded}</span>
+                    <span>{totalDistRounded} miles</span>
                 </div>
                 <div className="trip-stat">
                     <span>Estimated Time Traveling</span>

@@ -75,7 +75,7 @@ function App() {
     if (!selectedTripId) return;
     const date = new Date().toISOString();
     const defaults: StopRequest = {
-      name: "New stop",
+      name: "New Stop",
       category: "",
       description: "",
       address: "",

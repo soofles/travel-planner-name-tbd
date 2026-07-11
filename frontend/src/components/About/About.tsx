@@ -15,7 +15,7 @@ export default function About({
             <p>Version 0.1.0 (Alpha) © 2026 Sophie Tonthat</p>
             <span>Privacy</span>
             <p>No user account is required to use this app.</p>
-            <p>All of your the data in Enroute is stored locally on your device.</p>
+            <p>All of your data in Enroute is stored locally on your device.</p>
             <p>Location searching and route calculation may use third-party services to enable the use of said features.</p>
             <span>Credits</span>
             <p><strong>Map data:</strong> © OpenStreetMap contributors</p>

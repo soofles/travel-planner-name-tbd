@@ -126,7 +126,7 @@ export default function RightSidebar({
                 <label>Arrival Time</label>
                 <input
                     type="datetime-local"
-                    value={requestData.arrival_time}
+                    value={requestData.arrival_time || ""}
                     onChange={(e) => handleChange("arrival_time", e.target.value)}
                 />
             </div>
@@ -134,12 +134,14 @@ export default function RightSidebar({
                 <label>Departure Time</label>
                 <input
                     type="datetime-local"
-                    value={requestData.departure_time}
+                    value={requestData.departure_time || ""}
                     onChange={(e) => handleChange("departure_time", e.target.value)}
                 />
             </div>
-            <button className="save-stop-button" onClick={() => {onUpdateStop(stop.id, requestData)}}>Save</button>
-            <button className="delete-stop-button" onClick={() => {onDeleteStop(stop.id)}}>Delete Stop</button>
+            <div className="stop-button-container">
+                <button className="save-stop-button" onClick={() => {onUpdateStop(stop.id, requestData)}}>Save</button>
+                <button className="delete-stop-button" onClick={() => {onDeleteStop(stop.id)}}>Delete Stop</button>
+            </div>
         </aside>
     )
 }
